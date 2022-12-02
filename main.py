@@ -4,12 +4,11 @@ import requests
 from pprint import pprint
 import time
 import yadisk
-import tqdm
 import json
 from progress.bar import PixelBar
  #ведите id vk
-vk_id = str('Введите id пользователя VK ')
-TOKEN_YA = 'Введите токен'
+vk_id = input(str('Введите id пользователя VK '))
+TOKEN_YA = input('Введите токен')
 
 class VkUser:
     url = 'https://api.vk.com/method/'
