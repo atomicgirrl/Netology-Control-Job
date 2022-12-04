@@ -2,13 +2,10 @@ from my_token import TOKEN_VK
 # from my_token import TOKEN_YA
 import requests
 from pprint import pprint
-import time
 import yadisk
 import json
 from progress.bar import PixelBar
- #ведите id vk
-vk_id = input(str('Введите id пользователя VK '))
-TOKEN_YA = input('Введите токен')
+
 
 class VkUser:
     url = 'https://api.vk.com/method/'
@@ -16,7 +13,9 @@ class VkUser:
         self.params = {'access_token': token,
                        'v': '5.131'}
 
-    def get_followers(self, user_id=vk_id):
+
+
+    def get_followers(self,vk_id):
         followers_url = self.url + 'users.getFollowers'
         followers_params = {
             'count': 1000,
@@ -33,8 +32,13 @@ class VkUser:
                              'photo_sizes': 1,
                              'rev': 1,
                              'count': 5}
-        req = requests.get(get_photos_url,params={**self.params, **photos_get_params}).json()
-        return req['response']['items']
+        result=0
+        try:
+            req = requests.get(get_photos_url,params={**self.params, **photos_get_params}).json()
+            result = req['response']['items']
+        except:
+            result = print(' ')
+        return result
 
 
     def get_photos_parsed(self, vk_id):
@@ -88,9 +92,23 @@ class YaUploader:
 
 
 if __name__ == "__main__":
+    vk_id = input(str('Введите id пользователя VK '))
     ya1 = VkUser(TOKEN_VK)
-    yatoken = YaUploader(token=TOKEN_YA)
-    pprint(ya1.get_photos_parsed(vk_id))
-    with open('parsed_dict.json', 'w') as file:
-        json.dump(ya1.get_photos_parsed(vk_id), file, indent=4)
-    pprint(yatoken.upload_file(replace=False))
+    try:
+        pprint(ya1.get_photos_parsed(vk_id))
+        TOKEN_YA = input(str('Введите токен yandex '))
+        y = yadisk.YaDisk(token=TOKEN_YA)
+        try:
+            y.check_token(TOKEN_YA)
+            print("Token введён верно")
+            yatoken = YaUploader(token=TOKEN_YA)
+            with open('parsed_dict.json', 'w') as file:
+                json.dump(ya1.get_photos_parsed(vk_id), file, indent=4)
+            pprint(yatoken.upload_file(replace=False))
+        except:
+            print("Token указан неверно. Перезапустите программу")
+    except TypeError:
+        print('Token VK устарел либо vk-id введён неверно')
+
+
+

@@ -245,6 +245,14 @@ testing = ["pytest-benchmark", "pytest"]
 dev = ["tox", "pre-commit"]
 
 [[package]]
+name = "progress"
+version = "1.6"
+description = "Easy to use progress bars"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "pyflakes"
 version = "2.5.0"
 description = "passive checker of Python programs"
@@ -444,6 +452,17 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "yadisk"
+version = "1.2.16"
+description = "Библиотека-клиент REST API Яндекс.Диска / Yandex.Disk REST API client library"
+category = "main"
+optional = false
+python-versions = ">=3"
+
+[package.dependencies]
+requests = "*"
+
+[[package]]
 name = "yapf"
 version = "0.32.0"
 description = "A formatter for Python code."
@@ -478,7 +497,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "flake8 
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8.0,<3.9"
-content-hash = "f328c469a46d9cb95c79b10c69318f07ccca3f40cc6eb43ef51c87ad2ff1879b"
+content-hash = "f757b0982b0420f57dcb52a2336ac7a94a919bb5a230703e8af17d47d28a569f"
 
 [metadata.files]
 aiohttp = []
@@ -503,6 +522,7 @@ numpy = []
 packaging = []
 parso = []
 pluggy = []
+progress = []
 pyflakes = []
 pyparsing = []
 python-lsp-jsonrpc = []
@@ -518,6 +538,7 @@ ujson = []
 urllib3 = []
 werkzeug = []
 whatthepatch = []
+yadisk = []
 yapf = []
 yarl = []
 zipp = []
