@@ -78,14 +78,14 @@ class YaUploader:
             url_upload = self.URL_YA + "/upload"
             bar = PixelBar('Countdown', max=len(parsed_dict))
             for each_photo in parsed_dict:
-                assert isinstance(each_photo, dict)
+                assert isinstance(each_photo, dict
+                bar.next()
                 for each_key in each_photo:
                     file_name = str(each_photo.get('file_name')) + '.png'
                     url = each_photo.get('url')
                     y = yadisk.YaDisk(token=TOKEN_YA)
                     path = "folder_name"
-                    y.upload_url(url, folder_name + f'/{file_name}')
-                    bar.next()
+                    y.upload_url(url, folder_name + f'/{file_name}')    
             bar.finish()
             return 'Все файлы загружены/n'
 
